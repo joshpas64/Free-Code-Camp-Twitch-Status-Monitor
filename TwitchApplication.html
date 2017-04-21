@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="center-block jumbotron">
+    <h2 id="placeholder" class="text-primary text-center">Currently Featured <i class="fa fa-twitch" style="color:purple;"></i> Twitch Channels</h2>
+    <button class="btn btn-large"><i class="fa fa-refresh"></i> Refresh Channel Feed</button><br>
+    <ul class="list-unstyled"></ul>
+    <div class="row">
+      <div class="col-xs-9">
+        <div id="myContent">
+          <div class="tpanel active-tab" id="home">
+            <h3>Featured Channels</h3>
+            <ul class="list-unstyled testJson"></ul>
+            <p>These are the<strong> Featured</strong> Channels brought to you by <a href="https://freecodecamp.com" target="_blank" title="Free Code Camp's homepage"><i class="fa fa-free-code-camp"></i></a> FreeCodeCamp!</p>
+          </div>
+          <div class="tpanel" id="profile">
+            <h3>Currently Online</h3>
+            <p>These channels are online and streaming Right Now!</p>
+            <ul class="list-unstyled streams">
+            </ul>
+          </div>
+          <div class="tpanel" id="offline">
+            <h3>Offline Streamers</h3>
+            <p>Channels that are not Currently Streaming</p>
+            <ul class="list-unstyled basic-info"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 fixed-div">
+        <ul class="list-unstyled  nav-pills nav-stacked">
+          <li ng-click="channelInterface.toggleChannel('home')" class="active">
+            <a href="#home">Channels</a>
+          </li>
+          <li ng-click="channelInterface.toggleChannel('profile')">
+            <a href="#profile">Online</a>
+          </li>
+          <li>
+            <a ng-click="channelInterface.toggleChannel('offline')" href="#offline">Offline</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="logo-footer">
+    <ul class="list-unstyled list-inline text-center">
+      <li>
+        Project Link and Template By <i class="fa fa-free-code-camp"></i> <a href="https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api" target="_blank" title="Go to FreeCodeCamp challenge">FreeCodeCamp</a>
+      </li>
+      <li>
+        Check Out Twitch <i class="fa fa-twitch"></i>for Great Streams
+      </li>
+      <li>
+        Follow my <a href="https://github.com/joshpas64" title="Navigate to Github page" target="_blank"><i class="fa fa-github"></i>GitHub!
+      </li> 
+      <li>
+        Build More Pages like this with<a href="https://codepen.io" title="CodePen HomePage" target="_blank"><i class="fa fa-codepen"></i></a> CodePen
+      </li>
+    </ul>
+  </div>
+</div>
