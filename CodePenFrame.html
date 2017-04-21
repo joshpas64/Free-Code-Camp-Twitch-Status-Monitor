@@ -1,0 +1,290 @@
+
+<!DOCTYPE html><html class=''>
+<head><script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="http://codepen.io/joshpas4991/pen/jBQzgX" />
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'><link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css'>
+<style class="cp-pen-styles">body {
+  background: url(http://img00.deviantart.net/0b6b/i/2015/087/8/f/hightek_blu___twitch_overlay_by_ampix0-d8nijnf.png);
+}
+.text-info {
+  color: #295BAF;
+}
+
+.container-fluid .jumbotron {
+  margin-top: 2.5%;
+  background: url(http://wallpapercave.com/wp/D7nos8j.jpg) center;
+}
+
+.tab-content .tab-pane p
+{
+  color: #2B2C33;
+}
+
+.tpanel {
+  display: none;
+  background-color: #767782;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 1em;
+}
+
+.active-tab {
+  display: block;
+}
+
+.nav-pills li{
+  height: 50%;
+  margin-top: 25%;
+  margin-bottom: 55%;
+}
+
+.nav-pills li a{
+  padding: 20%;
+}
+.img-thumbnail {
+  margin: auto;
+  max-width: 100%;
+  max-height: 10em;
+  border-radius: 1em;
+  border: 5px solid black;
+}
+.fa-refresh {
+  color: green;
+}
+.channel-card{
+  background-color: lightblue;
+  border: 3px solid black;
+  padding: 2%;
+  margin-bottom: 5%;
+  border-radius: 0.5em;
+}
+
+.channel-card .col-xs-2 {
+  font-size: 0.8em;
+}
+.stream-card {
+ background-color: #EA2056;
+ color: black;
+}
+
+.offline-card {
+  background-color : #AFB5BF;
+}
+
+.jumbotron {
+  overflow: hidden;
+  border: 3px solid green;
+  border-radius: 3em;
+}
+
+.fixed-div::-webkit-scrollbar {
+  display: none;
+}
+.nav-pills li a {
+  border: 0.3em solid purple;
+  border-radius: 2em;
+}
+.fixed-div {
+  top: 30%;
+  right: 10%;
+  bottom: 5%;
+  min-height: 10%;
+  min-width: 10%;
+  max-height: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.logo-footer {
+  border: 3px solid black;
+  border-radius: 2em;
+  background-color: #B6BAC1;
+}
+.fa-free-code-camp {
+  color: green;
+}
+
+</style></head><body>
+<div class="container-fluid">
+  <div class="center-block jumbotron">
+    <h2 id="placeholder" class="text-primary text-center">Currently Featured <i class="fa fa-twitch" style="color:purple;"></i> Twitch Channels</h2>
+    <button class="btn btn-large"><i class="fa fa-refresh"></i> Refresh Channel Feed</button><br>
+    <ul class="list-unstyled"></ul>
+    <div class="row">
+      <div class="col-xs-9">
+        <div id="myContent">
+          <div class="tpanel active-tab" id="home">
+            <h3>Featured Channels</h3>
+            <ul class="list-unstyled testJson"></ul>
+            <p>These are the<strong> Featured</strong> Channels brought to you by <a href="https://freecodecamp.com" target="_blank" title="Free Code Camp's homepage"><i class="fa fa-free-code-camp"></i></a> FreeCodeCamp!</p>
+          </div>
+          <div class="tpanel" id="profile">
+            <h3>Currently Online</h3>
+            <p>These channels are online and streaming Right Now!</p>
+            <ul class="list-unstyled streams">
+            </ul>
+          </div>
+          <div class="tpanel" id="offline">
+            <h3>Offline Streamers</h3>
+            <p>Channels that are not Currently Streaming</p>
+            <ul class="list-unstyled basic-info"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-1 col-xs-offset-1 fixed-div">
+        <ul class="list-unstyled  nav-pills nav-stacked">
+          <li ng-click="channelInterface.toggleChannel('home')" class="active">
+            <a href="#home">Channels</a>
+          </li>
+          <li ng-click="channelInterface.toggleChannel('profile')">
+            <a href="#profile">Online</a>
+          </li>
+          <li>
+            <a ng-click="channelInterface.toggleChannel('offline')" href="#offline">Offline</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="logo-footer">
+    <ul class="list-unstyled list-inline text-center">
+      <li>
+        Project Link and Template By <i class="fa fa-free-code-camp"></i> <a href="https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api" target="_blank" title="Go to FreeCodeCamp challenge">FreeCodeCamp</a>
+      </li>
+      <li>
+        Check Out Twitch <i class="fa fa-twitch"></i>for Great Streams
+      </li>
+      <li>
+        Follow my <a href="https://github.com/joshpas64" title="Navigate to Github page" target="_blank"><i class="fa fa-github"></i>GitHub!
+      </li> 
+      <li>
+        Build More Pages like this with<a href="https://codepen.io" title="CodePen HomePage" target="_blank"><i class="fa fa-codepen"></i></a> CodePen
+      </li>
+    </ul>
+  </div>
+</div>
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
+<script>$(document).ready(function() {
+  var languageCode = {
+    "en": "English",
+    "fr": "French",
+    "dan": "Danish",
+    "deu": "Deustch",
+    "ger": "German",
+    "fin": "Finnish",
+    "ita": "Italian",
+    "de": "Deutsch",
+    "da": "Danish"
+  };
+  var regularChannels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+  var closedChannels = [
+    "brunofin", "comster404"
+  ];
+  var new_base = "https://wind-bow.glitch.me/twitch-api/channels/";
+  var stream_base = "https://wind-bow.glitch.me/twitch-api/streams/";
+  var user_base = "https://wind-bow.glitch.me/twitch-api/users/";
+  $(".nav-pills li").click(function(e) {
+    $(".nav-pills li").removeClass("active");
+    $(this).addClass("active");
+    $(".tpanel").css("display", "none");
+    url = $(this).children().attr("href");
+    $(url).css("display", "block");
+  });
+  var channelList = [];
+  var onlineStreamers = [];
+  var offlineStreamers = [];
+  var resultJSON;
+  var loadStreams = function() {
+    var profile_base;
+    $(".streams").html("");
+    for (var i = 0; i < regularChannels.length; i++) {if (window.CP.shouldStopExecution(1)){break;}
+      profile_base = stream_base;
+      profile_base += regularChannels[i];
+      var currentChannel = regularChannels[i];
+      $.ajax({
+        url: profile_base,
+        success: function(response, status) {
+          if (response.stream !== null) {
+            if (onlineStreamers.indexOf(response.stream.channel.display_name) === -1)
+              onlineStreamers.push(response.stream.channel.display_name);
+            $(".streams").append("<li class='channel-card stream-card'><div class='row'><div class='col-xs-6'><a href='" + response.stream.channel.url + "' target='_blank' title='Click here to check out the stream!'><h5 class='text-primary text-info'>" + response.stream.channel.display_name + "</h5></a>" + "<img src='" + response.stream.preview.small + "' class='img-responsive img-thumbnail' alt='No preview thumbnail available'><br>" + response.stream.channel.display_name + "says: <em>" + response.stream.channel.status + "</em><br><b>Streaming since:</b> " + response.stream.created_at + "<br><b>Content: </b>" + response.stream.game + "</div><div class='col-xs-2'><h6 class='text-info'>Stream Numbers</h6>" + "<ul class='list-unstyled'><li><b>Currently Watched by:</b> " + response.stream.viewers + "</li><li><b>Current FPS: </b>" + response.stream.average_fps + "</li></ul></div></div></li>");
+          } else {
+            if (offlineStreamers.indexOf(currentChannel) === -1) {
+              offlineStreamers.push(currentChannel);
+            }
+          }
+        }
+      });
+    }
+window.CP.exitedLoop(1);
+
+  };
+  var jsonRetrieve = function(url) {
+    var new_url = url;
+    $(".testJson").html("");
+    for (var i = 0; i < regularChannels.length; i++) {if (window.CP.shouldStopExecution(2)){break;}
+      new_url = new_base + regularChannels[i];
+      var bio = "";
+      var defaultGame = "Not Streaming or No Featured Game for Channel Set";
+      var user_search = user_base + regularChannels[i];
+      $.ajax({
+        url: user_search,
+        success: function(response,status){
+          if(response.bio !== null)
+            bio = "<p><strong>Channel Bio: </strong>" + response.bio + "</p>";
+        }
+      });
+      $.ajax({
+        url: new_url,
+        success: function(data, status) {
+          var featuredStatus = data.status;
+          var availability = "<b>Currently Offline</b>: ";
+          var isOffline = true;
+          if (data.status === 404) {
+            featuredStatus = "I'm sorry but it seems that the " + data.message;
+            $(".testJson").append("<li class='channel-card'><div class='row'><div class='col-xs-6'><h5 class='text-info'>" + data.message + "</h5><img src='' class='img-responsive img-thumbnail' alt='No logo picture available'></div></div><div class='row'><div class='col-xs-9'><small><b>Current Status</b>" + featuredStatus + "</small></div></div></li>");
+          } else {
+            if (onlineStreamers.indexOf(data.display_name) !== -1) {
+              availability = "<b>Currently Online</b>: ";
+              isOffline = false;
+            }
+            if(data.game !== null)
+              defaultGame = data.game;
+            $(".testJson").append("<li class='channel-card'><div class='row'><div class='col-xs-6'><h5 class='text-info'><a title='Click to go to Twitch Channel' target='_blank' href='" + data.url + "'>" + data.display_name + "</a></h5><img src='" + data.logo + "' class='img-responsive img-thumbnail' alt='No logo picture available'><br>On Twitch since: " + data.created_at + "</div><div class='col-xs-2'><h6>Statistics</h6><ul class='list-unstyled'><li><b>Total Views: </b>" + data.views + "</li><li><b>Overall Followers:</b> " + data.followers + "</li></ul></div></div><div class='row'><div class='col-xs-9'><small><b>Current Status: </b>" + featuredStatus + "</small><br>" + availability + "<br><b>Recently Featured Game/Activity:</b> " + defaultGame + "</div></div></li>");
+            if(isOffline){           
+          var mature = "No";
+          var partnered = "No";
+          var language = data.language;
+          if(data.language === null)
+            language = "N/A";
+          if (data.mature)
+            mature = "Yes";
+          if (data.partner)
+            partnered = "Yes";
+          $(".basic-info").append("<li class='channel-card offline-card'><div class='row'><div class='col-xs-6'><h5 class='text-primary text-info'><a title='Click to go to Twitch channel' target='_blank' href='" + data.url + "'>" + data.display_name + "</a></h5><img class='img-responsive img-thumbnail' alt='logo not availalle' src='" + data.logo + "'><br>" + bio + "<br>" + data.status + "<br><b>Mature Content?: </b>" + mature + "<br><b>Partnered Channel? :</b>" + partnered + "<br><b>BroadCasting Main Lang: </b>" + languageCode[language] + "</div><div class='col-xs-2'><h6 class='text-info'>Channel Info</h6><strong>Featured Game</strong>: " + defaultGame +
+            "<br><b>Twitch Channel Since: " + data.created_at + "</div></div></li>");
+            }
+          }
+        }
+      });
+    }
+window.CP.exitedLoop(2);
+
+  }
+  var loadTwitch = function(){
+    loadStreams();
+    jsonRetrieve(new_base);
+  };
+  $("button").click(function(e) {
+    loadTwitch();
+  });
+});
+//# sourceURL=pen.js
+</script>
+</body></html>
