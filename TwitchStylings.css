@@ -1,0 +1,110 @@
+body {
+  background: url(http://img00.deviantart.net/0b6b/i/2015/087/8/f/hightek_blu___twitch_overlay_by_ampix0-d8nijnf.png);
+}
+
+.text-info {
+  color: #295BAF;
+}
+
+.container-fluid .jumbotron {
+  margin-top: 2.5%;
+  background: url(http://wallpapercave.com/wp/D7nos8j.jpg) center;
+}
+
+.tab-content .tab-pane p {
+  color: #2B2C33;
+}
+
+.tpanel {
+  display: none;
+  background-color: #767782;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 1em;
+}
+
+.active-tab {
+  display: block;
+}
+
+.nav-pills li {
+  height: 50%;
+  margin-top: 25%;
+  margin-bottom: 55%;
+}
+
+.nav-pills li a {
+  padding: 20%;
+}
+
+.img-thumbnail {
+  margin: auto;
+  max-width: 100%;
+  max-height: 10em;
+  border-radius: 1em;
+  border: 5px solid black;
+}
+
+.fa-refresh {
+  color: green;
+}
+
+.channel-card {
+  background-color: lightblue;
+  border: 3px solid black;
+  padding: 2%;
+  margin-bottom: 5%;
+  border-radius: 0.5em;
+}
+
+.channel-card .col-xs-2 {
+  font-size: 0.8em;
+}
+
+.stream-card {
+  background-color: #EA2056;
+  color: black;
+}
+
+.offline-card {
+  background-color: #AFB5BF;
+}
+
+.jumbotron {
+  overflow: hidden;
+  border: 3px solid green;
+  border-radius: 3em;
+}
+
+.fixed-div::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-pills li a {
+  border: 0.3em solid purple;
+  border-radius: 2em;
+}
+
+.fixed-div {
+  top: 30%;
+  right: 10%;
+  bottom: 5%;
+  min-height: 10%;
+  min-width: 10%;
+  max-height: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.logo-footer {
+  border: 3px solid black;
+  border-radius: 2em;
+  background-color: #B6BAC1;
+}
+
+.fa-free-code-camp {
+  color: green;
+}
